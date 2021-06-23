@@ -8,14 +8,35 @@ const Header = styled.div`
     margin: 0 25px;
 `;
 
-const Records = styled.div`
+const AllRecords = styled.div`
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction:column;
     height: calc(100vh - 78px - 143px);
     background: #FFFFFF;
     border-radius: 5px;
     margin: 0 25px;
+    overflow: scroll;
+    -ms-overflow-style: none;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+`;
+
+const Record = styled.div`
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    width: 100%;
+    margin: 10px 0;
+    padding: 0 10px;
+        div:nth-child(2){
+            color:${props => props.isWithdraw ? 'red' : 'green' };
+        }
+`;
+
+const Date = styled.span`
+margin: 0 5px;
+color: #C6C6C6;
 `;
 
 const NewExtract = styled.div`
@@ -43,4 +64,4 @@ const Button = styled.button`
         }
 `;
 
-export { Header, Records, NewExtract, Button };
+export { Header, AllRecords, Record, NewExtract, Button, Date };

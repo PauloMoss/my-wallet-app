@@ -27,7 +27,8 @@ export default function SignUp() {
         }
         setButtonStatus({status:<Loader type="ThreeDots" color="#FFFFFF" height={19} width={50}/>, userAlert: "", isDisabled: true});
 
-        const request = axios.post("https://localhost:4000/sign-up", userData);
+        const body = userData;
+        const request = axios.post("http://localhost:4000/sign-up", body);
         request.then(() => history.push("/"));
         request.catch(() => {
             setButtonStatus({status:"Cadastrar", userAlert: <UserAlert>Por favor, verifique os dados e tente novamente.</UserAlert>, isDisabled: false});

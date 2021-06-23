@@ -9,19 +9,17 @@ import { Container, Input, Button, UserAlert } from './Styles';
 export default function Login() {
     
     const history = useHistory();
-    const { setUserProfile } = useContext(UserContext);
+    const { userProfile, setUserProfile } = useContext(UserContext);
     const [user, setUser] = useState({ email: "", password: "" });
     const [buttonStatus, setButtonStatus] = useState({ status:"Entrar", userAlert: "", isDisabled: false});
-    const lastUser = localStorage.getItem("lastLogin");
     
-    /*useEffect(() => {
-        if(lastUser) {
-            const currentUser = JSON.parse(lastUser);
-            setUserProfile(currentUser);
-            history.push("/hoje");
-            return <> carregando </>;
+    useEffect(()=>{
+        if (userProfile){
+            history.push("/home");
+            return ;
         }
-    }, []);*/
+        // eslint-disable-next-line
+    }, [])
 
     const { email, password } = user
     const { status, userAlert, isDisabled } = buttonStatus;
@@ -36,9 +34,12 @@ export default function Login() {
         event.preventDefault();
         setButtonStatus({status:<Loader type="ThreeDots" color="#FFFFFF" height={19} width={50}/>, userAlert: "", isDisabled: true});
 
-        const request = axios.post(`https://localhost:4000/login`, user);
+        const body = user;
+        const request = axios.post('http://localhost:4000/login', body);
+
         request.then((r) => {
-            setUserProfile(r.data)
+            setUserProfile(r.data);
+            console.log(r.data.token)
             if(checkBox) {
                 const loginSaved = JSON.stringify(r.data);
                 localStorage.setItem("lastLogin", loginSaved);
@@ -57,7 +58,7 @@ export default function Login() {
                 <h1>MyWallet</h1>
                 <form onSubmit={userLogIn}>
                     <Input type="email" placeholder="Email" value={email} required disabled={isDisabled} onChange={e => handleOnChange(e, "email")}/>
-                    <Input type="password" placeholder="Password" value={password} required disabled={isDisabled} onChange={e => handleOnChange(e, "password")} />
+                    <Input type="password" placeholder="Senha" value={password} required disabled={isDisabled} onChange={e => handleOnChange(e, "password")} />
                     <div style={{color: '#FFFFFF'}}><input type="checkbox" onChange={(e) => {checkBox = e.target.checked}}/> manhenha-se conectado</div>
                     <Button type="submit">{status}</Button>
                 </form>
