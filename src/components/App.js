@@ -6,6 +6,7 @@ import GlobalStyle from "../styles/GlobalStyles";
 import Home from './Home/Home';
 import Login from './Login_SignUp/Login';
 import SignUp from './Login_SignUp/SignUp';
+import Transfer from './Transfer';
 
 export default function App() {
 
@@ -26,6 +27,9 @@ export default function App() {
                 </Route>
                 <Route path ="/home">
                     <Home />
+                </Route>
+                <Route path ="/transfer/:transferType">
+                    <Transfer />
                 </Route>
             </Switch>
             </UserContext.Provider>
