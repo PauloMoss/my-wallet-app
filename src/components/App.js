@@ -12,8 +12,7 @@ export default function App() {
 
     const alreadyLoggedIn = localStorage.getItem("lastLogin");
     const [userProfile, setUserProfile] = useState(alreadyLoggedIn && JSON.parse(alreadyLoggedIn));
-
-
+    
     return (
         <Router>
             <UserContext.Provider value={{ userProfile, setUserProfile }}>

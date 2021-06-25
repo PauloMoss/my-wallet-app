@@ -21,25 +21,33 @@ const AllRecords = styled.div`
     background: #FFFFFF;
     border-radius: 5px;
     margin: 0 25px;
-    padding-bottom: 50px;
+    padding: 20px 0 50px 0;
     overflow: scroll;
     -ms-overflow-style: none;
         &::-webkit-scrollbar {
             display: none;
         }
-        & > div:last-child {
-            display: flex;
-            justify-content: space-between;
-            align-items:center;
-            height:50px;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            span {
-                font-weight: 700;
-            }
-        }
+`;
+
+const Balance = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    height:50px;
+    position: fixed;
+    bottom: 143px;
+    left: 25px;
+    right:25px;
+    border-radius: 5px;
+    z-index:1;
+    padding: 0 15px;
+    background-color: #fff;
+    span {
+        font-weight: 700;
+    }
+    div {
+        color: ${props => props.overall.length === 1 ? 'green' : 'red'};
+    }
 `;
 
 const Record = styled.div`
@@ -57,10 +65,6 @@ const Record = styled.div`
 const Date = styled.span`
 margin: 0 5px;
 color: #C6C6C6;
-`;
-
-const Balance = styled.div`
-color: ${props => props.overall.length === 1 ? 'green' : 'red'};
 `;
 
 const NewExtract = styled.div`

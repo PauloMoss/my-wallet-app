@@ -39,7 +39,6 @@ export default function Login() {
 
         request.then((r) => {
             setUserProfile(r.data);
-            console.log(r.data.token)
             if(checkBox) {
                 const loginSaved = JSON.stringify(r.data);
                 localStorage.setItem("lastLogin", loginSaved);
