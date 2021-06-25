@@ -36,7 +36,7 @@ const Input = styled.input`
     font-size: 15px;
     color: #000;
     background-color: ${props => props.disabled ? '#F2F2F2' : '#FFFFFF'};
-    font-family: Lexend Deca;
+    font-family: 'Raleway', sans-serif;
     ::placeholder {
         color: #000;
         opacity: 0.5
