@@ -30,8 +30,15 @@ export default function Login() {
     }
     
     function userLogIn(event) {
-
         event.preventDefault();
+
+        if(email.length === 0) {
+            setButtonStatus({...buttonStatus, userAlert: <UserAlert>Por favor, preencha o campo de email</UserAlert>});
+            return;
+        } else if(password.length < 6) {
+            setButtonStatus({...buttonStatus, userAlert: <UserAlert>A senha precisa ter no minimo 6 caracteres</UserAlert>});
+            return;
+        }
         setButtonStatus({status:<Loader type="ThreeDots" color="#FFFFFF" height={19} width={50}/>, userAlert: "", isDisabled: true});
 
         const body = user;

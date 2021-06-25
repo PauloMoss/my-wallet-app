@@ -27,6 +27,10 @@ const AllRecords = styled.div`
         &::-webkit-scrollbar {
             display: none;
         }
+        & > span {
+            color: #868686;
+            font-size: 17px;
+        }
 `;
 
 const Balance = styled.div`
@@ -80,7 +84,7 @@ const Button = styled.button`
     display:flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 155px;
+    width: 40vw;
     height: 114px;
     background: #A328D6;
     border-radius: 5px;
@@ -88,7 +92,8 @@ const Button = styled.button`
     padding: 20px 10px;
         p {
             color: #FFF;
-            font-size: 17px;
+            font-size: 15px;
+            text-align:start;
         }
 `;
 

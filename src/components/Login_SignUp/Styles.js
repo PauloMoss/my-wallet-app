@@ -39,7 +39,7 @@ const Input = styled.input`
     font-family: Lexend Deca;
     ::placeholder {
         color: #000;
-        opacity: 1; /* Firefox */
+        opacity: 0.5
     }
 `;
 
@@ -52,8 +52,10 @@ const Button = styled.button`
     font-size: 20px;
 `;
 const UserAlert = styled.div`
+    text-align: center;
+    font-weight: 700;
     margin-top: 10px;
-    color: #ff0000;
+    color: red;
 `;
 
 export {Container, Input, Button, UserAlert };

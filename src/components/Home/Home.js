@@ -57,7 +57,7 @@ export default function Home() {
                             <div>{myRecords.balance}</div>
                         </Balance>
                     </>
-                : <AllRecords records={false}>Não há registros de entrada ou saída</AllRecords>
+                : <AllRecords records={false}><span>Não há registros de entrada ou saída</span></AllRecords>
             : <AllRecords records={false}>{loading}</AllRecords>} 
             <NewExtract>
                 <Link to="/transfer/In">
