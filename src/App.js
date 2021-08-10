@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useState } from "react";
 
-import UserContext from "../contexts/UserContext";
-import GlobalStyle from "../styles/GlobalStyles";
-import Home from './Home/Home';
-import Login from './Login_SignUp/Login';
-import SignUp from './Login_SignUp/SignUp';
-import Transfer from './Transfer';
+import UserContext from "./contexts/UserContext";
+import GlobalStyle from "./assets/styles/GlobalStyles";
+import Home from './pages/Home';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
+import Transfer from './pages/Transfer';
 
 export default function App() {
 

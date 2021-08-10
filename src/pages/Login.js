@@ -2,9 +2,12 @@ import { Link, useHistory } from 'react-router-dom';
 import { useState, useContext, useEffect } from 'react';
 import Loader from "react-loader-spinner";
 import axios from 'axios';
+import styled from 'styled-components';
 
-import UserContext from '../../contexts/UserContext';
-import { Container, Input, Button, UserAlert } from './Styles';
+import UserContext from '../contexts/UserContext';
+import {Container} from '../components/Container';
+import {Input} from '../components/Input';
+import {Button} from '../components/Button';
 
 export default function Login() {
     
@@ -42,7 +45,7 @@ export default function Login() {
         setButtonStatus({status:<Loader type="ThreeDots" color="#FFFFFF" height={19} width={50}/>, userAlert: "", isDisabled: true});
 
         const body = user;
-        const request = axios.post('http://localhost:4000/login', body);
+        const request = axios.post(`${process.env.REACT_APP_API_BASE_URL}/login`, body);
 
         request.then((r) => {
             setUserProfile(r.data);
@@ -52,25 +55,39 @@ export default function Login() {
             }
             history.push("/home");
         })
-        request.catch(erro => {
+        request.catch(() => {
             setButtonStatus({ status:"Entrar", userAlert: <UserAlert>Usuario ou senha invalida</UserAlert>, isDisabled: false});
         })
         setUser({ email: "", password: "" });
     }
 
     return(
-        <>
-            <Container>
-                <h1>MyWallet</h1>
-                <form onSubmit={userLogIn}>
-                    <Input type="email" placeholder="Email" value={email} required disabled={isDisabled} onChange={e => handleOnChange(e, "email")}/>
-                    <Input type="password" placeholder="Senha" value={password} required disabled={isDisabled} onChange={e => handleOnChange(e, "password")} />
-                    <div style={{color: '#FFFFFF'}}><input type="checkbox" onChange={(e) => {checkBox = e.target.checked}}/> manhenha-se conectado</div>
-                    <Button type="submit">{status}</Button>
-                </form>
-                <Link to= "/signup" ><span>Primeira vez? Cadastre-se!</span></Link>
-                {userAlert}
-            </Container>
-        </>
+        <Container>
+            <h1>MyWallet</h1>
+            <FormContainer onSubmit={userLogIn}>
+                <Input type="email" placeholder="Email" value={email} required disabled={isDisabled} onChange={e => handleOnChange(e, "email")}/>
+                <Input type="password" placeholder="Senha" value={password} required disabled={isDisabled} onChange={e => handleOnChange(e, "password")} />
+                <div style={{color: '#FFFFFF'}}><input type="checkbox" onChange={(e) => {checkBox = e.target.checked}}/> manhenha-se conectado</div>
+                <Button type="submit">{status}</Button>
+            </FormContainer>
+            <Link to= "/signup" ><span>Primeira vez? Cadastre-se!</span></Link>
+            {userAlert}
+        </Container>
     );
 }
+
+const FormContainer = styled.form`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+`;
+
+const UserAlert = styled.div`
+    text-align: center;
+    font-weight: 700;
+    margin-top: 10px;
+    color: red;
+`;

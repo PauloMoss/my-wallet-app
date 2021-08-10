@@ -5,8 +5,10 @@ import styled from 'styled-components';
 import CurrencyInput from 'react-currency-input'
 import Loader from "react-loader-spinner";
 
-import { Header } from './Home/Styles';
-import { Container, Input, Button, UserAlert } from './Login_SignUp/Styles';
+import { Header } from '../components/Header';
+import { Container } from '../components/Container';
+import { Input } from '../components/Input';
+import { Button } from '../components/Button';
 import UserContext from "../contexts/UserContext";
 
 export default function Transfer() {
@@ -43,11 +45,11 @@ export default function Transfer() {
         
         const body = {value: Number(value.replace('.','').replace(',','')), description};
         const config = { headers: { Authorization: `Bearer ${userProfile.token}` } }
-        const request = axios.post(`http://localhost:4000/records/${transferType}`, body, config );
+        const request = axios.post(`${process.env.REACT_APP_API_BASE_URL}/records/${transferType}`, body, config );
         request.then(() => {
             history.push("/home");
         });
-        request.catch(erro => {
+        request.catch(() => {
             setButtonStatus({ status:"Entrar", userAlert: <UserAlert>Ocorreu um erro, por favor tente novamente</UserAlert>, isDisabled: false});
         });
     }
@@ -83,4 +85,11 @@ const StyledReactInput = styled(CurrencyInput)`
         color: #000;
         opacity: 0.5
     }
+`;
+
+const UserAlert = styled.div`
+    text-align: center;
+    font-weight: 700;
+    margin-top: 10px;
+    color: red;
 `;

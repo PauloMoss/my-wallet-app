@@ -2,8 +2,11 @@ import { Link, useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 import Loader from "react-loader-spinner";
+import styled from 'styled-components';
 
-import { Container, Input, Button, UserAlert } from './Styles';
+import {Container} from '../components/Container';
+import {Input} from '../components/Input';
+import {Button} from '../components/Button';
 
 export default function SignUp() {
 
@@ -37,7 +40,7 @@ export default function SignUp() {
         setButtonStatus({status:<Loader type="ThreeDots" color="#FFFFFF" height={19} width={50}/>, userAlert: "", isDisabled: true});
 
         const body = userData;
-        const request = axios.post("http://localhost:4000/sign-up", body);
+        const request = axios.post(`${process.env.REACT_APP_API_BASE_URL}/sign-up`, body);
         request.then(() => history.push("/"));
         request.catch(() => {
             setButtonStatus({status:"Cadastrar", userAlert: <UserAlert>Por favor, verifique os dados e tente novamente.</UserAlert>, isDisabled: false});
@@ -46,19 +49,33 @@ export default function SignUp() {
     }
     
     return(
-        <>
-            <Container>
-                <h1>MyWallet</h1>
-                <form onSubmit={userSignUp}>
-                    <Input type="text" placeholder="Nome" value={name} disabled={isDisabled} onChange={e => handleOnChange(e, "name")}/>
-                    <Input type="email" placeholder="Email" value={email} disabled={isDisabled} onChange={e => handleOnChange(e, "email")}/>
-                    <Input type="password" placeholder="Senha" value={password} disabled={isDisabled} onChange={e => handleOnChange(e, "password")}/>
-                    <Input type="password" placeholder="Confirme a senha" value={confirmPassword} disabled={isDisabled} onChange={e => handleOnChange(e, "confirmPassword")}/>
-                    <Button type="submit" >{status}</Button>
-                </form>
-                <Link to="/" ><span>Já tem uma conta? Entre agora!</span></Link>
-                {userAlert}
-            </Container>
-        </>
+        <Container>
+            <h1>MyWallet</h1>
+            <FormContainer onSubmit={userSignUp}>
+                <Input type="text" placeholder="Nome" value={name} disabled={isDisabled} onChange={e => handleOnChange(e, "name")}/>
+                <Input type="email" placeholder="Email" value={email} disabled={isDisabled} onChange={e => handleOnChange(e, "email")}/>
+                <Input type="password" placeholder="Senha" value={password} disabled={isDisabled} onChange={e => handleOnChange(e, "password")}/>
+                <Input type="password" placeholder="Confirme a senha" value={confirmPassword} disabled={isDisabled} onChange={e => handleOnChange(e, "confirmPassword")}/>
+                <Button type="submit" >{status}</Button>
+            </FormContainer>
+            <Link to="/" ><span>Já tem uma conta? Entre agora!</span></Link>
+            {userAlert}
+        </Container>
     );
 }
+
+const FormContainer = styled.form`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+`;
+
+const UserAlert = styled.div`
+    text-align: center;
+    font-weight: 700;
+    margin-top: 10px;
+    color: red;
+`;
