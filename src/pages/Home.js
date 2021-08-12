@@ -52,8 +52,6 @@ export default function Home() {
     );
 }
 
-
-
 const NewExtract = styled.div`
     display: flex;
     justify-content: space-between;
