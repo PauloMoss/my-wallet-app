@@ -2,6 +2,9 @@
 
 An user friendly app to manage your financial expenses. Use it to track how you spend your money, knowing at all times how much you have.
 
+<img src= "src/assets/images/Peek 12-08-2021 12-06.gif" />
+
+
 ## About
 
 This is an web application with which lots of people can manage their own expenses and revenues. Below are the implemented features:
