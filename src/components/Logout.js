@@ -16,6 +16,13 @@ export default function Logout({userProfile, setUserProfile}) {
             setUserProfile("");
             history.push("/");
         });
+        request.catch(error => {
+            if(error.response.status === 401) {
+                localStorage.removeItem("lastLogin");
+                setUserProfile("");
+                history.push("/");
+            }
+        });
     }
 
     return (

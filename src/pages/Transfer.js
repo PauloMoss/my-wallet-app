@@ -4,6 +4,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import CurrencyInput from 'react-currency-input'
 import Loader from "react-loader-spinner";
+import { IoArrowBack } from 'react-icons/io5';
 
 import { Header } from '../components/Header';
 import { Container } from '../components/Container';
@@ -15,7 +16,7 @@ export default function Transfer() {
 
     const { transferType } = useParams();
     const history = useHistory();
-    const { userProfile } = useContext(UserContext)
+    const { userProfile, setUserProfile } = useContext(UserContext)
     const [transferDetail, setTransferDetail] = useState({value: null, description: "", type: ""});
     const { value, description } = transferDetail;
     const [buttonStatus, setButtonStatus] = useState({ userAlert: "", isDisabled: false });
@@ -49,7 +50,12 @@ export default function Transfer() {
         request.then(() => {
             history.push("/home");
         });
-        request.catch(() => {
+        request.catch(error => {
+            if(error.response.status === 401) {
+                localStorage.removeItem("lastLogin");
+                setUserProfile("");
+                history.push("/");
+            }
             setButtonStatus({ status:"Entrar", userAlert: <UserAlert>Ocorreu um erro, por favor tente novamente</UserAlert>, isDisabled: false});
         });
     }
@@ -58,6 +64,7 @@ export default function Transfer() {
         <>
             <Header>
                 Nova {transferDetail.type}
+                <IoArrowBack onClick={history.goBack}/>
             </Header>
             <Container>
                 <form onSubmit={sendTransfer}>
