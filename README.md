@@ -4,6 +4,7 @@ An user friendly app to manage your financial expenses. Use it to track how you 
 
 <img src= "src/assets/images/Peek 12-08-2021 12-06.gif" />
 
+Try it out now at https://projeto-my-wallet-front.vercel.app/
 
 ## About
 
