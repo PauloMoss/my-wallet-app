@@ -40,7 +40,7 @@ export default function SignUp() {
         setButtonStatus({status:<Loader type="ThreeDots" color="#FFFFFF" height={19} width={50}/>, userAlert: "", isDisabled: true});
 
         const body = userData;
-        const request = axios.post(`${process.env.REACT_APP_API_BASE_URL}sign-up`, body);
+        const request = axios.post(`${process.env.REACT_APP_API_BASE_URL}/sign-up`, body);
         request.then(() => history.push("/"));
         request.catch(() => {
             setButtonStatus({status:"Cadastrar", userAlert: <UserAlert>Por favor, verifique os dados e tente novamente.</UserAlert>, isDisabled: false});
