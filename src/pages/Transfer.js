@@ -80,7 +80,7 @@ const StyledReactInput = styled(CurrencyInput)`
     margin: 6px 0;
     color: #000;
     font-size: 15px;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'arial';
     ::placeholder {
         color: #000;
         opacity: 0.5
