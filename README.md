@@ -1,6 +1,6 @@
 # My Wallet
 
-An app to manage your financial expenses. Use it to track how you spend your money, knowing at all times how much you have.
+An user friendly app to manage your financial expenses. Use it to track how you spend your money, knowing at all times how much you have.
 
 ## About
 
